@@ -1,0 +1,84 @@
+import { useNavigate } from 'react-router-dom';
+
+const ScanMethod = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+
+  if (!isOpen) return null;
+
+  const handleScan = () => {
+    navigate('/scan');
+    onClose();
+  };
+
+  const handleContribute = () => {
+    navigate('/contribute');
+    onClose();
+  };
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 2000,
+    }} onClick={onClose}>
+      <div style={{
+        backgroundColor: '#fff',
+        padding: '20px',
+        borderRadius: '8px',
+        maxWidth: '300px',
+        width: '80%',
+        textAlign: 'center',
+      }} onClick={(e) => e.stopPropagation()}>
+        <h2>Wähle eine Option</h2>
+        <button onClick={handleScan} style={{
+          display: 'block',
+          width: '100%',
+          padding: '10px',
+          margin: '10px 0',
+          backgroundColor: '#128b09ff',
+          color: '#0b0b0bff',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}>
+          Scan
+        </button>
+        <button onClick={handleContribute} style={{
+          display: 'block',
+          width: '100%',
+          padding: '10px',
+          margin: '10px 0',
+          backgroundColor: '#128b09ff',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}>
+          Contribute
+        </button>
+        <button onClick={onClose} style={{
+          display: 'block',
+          width: '100%',
+          padding: '10px',
+          margin: '10px 0',
+          backgroundColor: '#ccc',
+          color: '#000',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}>
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ScanMethod;
