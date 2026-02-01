@@ -1,0 +1,57 @@
+import { useNavigate } from 'react-router-dom';
+import FollowButton from './FollowButton';
+
+const Friend = ({ friend }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/friend-detail/${friend.id}`, { state: { friend } });
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      style={{
+        backgroundColor: '#fff',
+        padding: '15px',
+        marginBottom: '15px',
+        borderRadius: '8px',
+        border: '1px solid #ddd',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        cursor: 'pointer',
+        transition: 'transform 0.2s, box-shadow 0.2s',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+      }}
+    >
+      <h3 style={{ margin: '0 0 8px 0', color: '#128b09ff' }}>{friend.title}</h3>
+      <p style={{ margin: '0 0 8px 0', color: '#666' }}>{friend.bio}</p>
+	  <img src={friend.picture} alt={friend.title} style={{ borderRadius: '50%', margin: '0 0 8px 0', color: '#666' }} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
+        <span
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#e8f5e8',
+            color: '#128b09ff',
+            padding: '4px 10px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          }}
+        >
+        </span>
+		<div onClick={(e) => e.stopPropagation()}>
+        	<FollowButton friendId={friend.id} />
+		</div>
+      </div>
+    </div>
+  );
+};
+
+export default Friend;
