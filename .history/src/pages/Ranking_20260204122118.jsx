@@ -1,4 +1,3 @@
-//fixen dass Checkmark als default nicht angezeigt aber Liste trotzdem deaktiviert ist
 //evtl. wenn noch viel Zeit Profile klickbar machen (aber alle das selbe und nur Name usw. je anpassen)
 //evtl. noch verschönern wenn Rangliste deaktiviert ist (Schloss, Anleitung wie aktivieren usw.)
 

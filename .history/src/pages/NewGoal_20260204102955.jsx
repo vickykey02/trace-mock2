@@ -1,12 +1,11 @@
 // evtl. einbauen dass man Freund hinzufügen kann, überlegen ob Community Goals
 // Sinn machen oder erstmal zu viel sind
-//wenn Label nicht Individual, dann muss bei Klick auf plus erst Freund/Gruppe ausgewählt werden
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGoals, PRESET_GOALS, FRIEND_GOALS } from '../context/GoalsContext';
 
 const CATEGORIES = ['Shopping', 'Natur', 'Energie', 'Abfall', 'Mobilität', 'Ernährung'];
-const LABELS = ['Individual', 'Partner', 'Community'];
+const LABELS = ['Individual', 'Community'];
 
 const NewGoal = () => {
   const navigate = useNavigate();
@@ -167,7 +166,7 @@ const NewGoal = () => {
               )}
             </div>
           </div>
-         {/* <button
+          <button
             onClick={(e) => {
               e.stopPropagation();
               handleAddGoal(goal);
@@ -190,7 +189,7 @@ const NewGoal = () => {
             title={alreadyActive ? 'Bereits aktiv' : 'Zu meinen Zielen hinzufügen'}
           >
             {alreadyActive ? '✓' : '+'}
-          </button> */}
+          </button>
         </div>
       </div>
     );
@@ -354,31 +353,6 @@ const NewGoal = () => {
                   ))}
                 </select>
               </div>
-
-              {/* Label */}
-              <div style={{ marginBottom: 15 }}>
-                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: 5, fontSize: 14 }}>
-                  Label *
-                </label>
-                <select
-                  value={ownGoal.label}
-                  onChange={(e) => setOwnGoal({ ...ownGoal, label: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: 10,
-                    border: '1px solid #ddd',
-                    borderRadius: 8,
-                    boxSizing: 'border-box',
-                    background: '#fff'
-                  }}
-                >
-                  <option value="">-- Label wählen --</option>
-                  {LABELS.map(label => (
-                    <option key={label} value={label}>{label}</option>
-                  ))}
-                </select>
-              </div>
-
 
               {/* Zielwert und Einheit */}
               <div style={{ display: 'flex', gap: 15, marginBottom: 15 }}>

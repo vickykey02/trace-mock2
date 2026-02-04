@@ -105,8 +105,8 @@ const Past = () => {
             0% {
               background-position: 0% 0%;
             }
-            100% {
-              background-position: 25% 100%;
+            300% {
+              background-position: 100% 100%;
             }
           }
         `}

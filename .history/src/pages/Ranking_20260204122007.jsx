@@ -1,4 +1,3 @@
-//fixen dass Checkmark als default nicht angezeigt aber Liste trotzdem deaktiviert ist
 //evtl. wenn noch viel Zeit Profile klickbar machen (aber alle das selbe und nur Name usw. je anpassen)
 //evtl. noch verschönern wenn Rangliste deaktiviert ist (Schloss, Anleitung wie aktivieren usw.)
 
@@ -122,18 +121,11 @@ const Ranking = () => {
           onClick={() => navigate('/personalization')}
           style={{ 
             position: 'absolute',
-            top: '20px',
-            right: '40px',
+            //flex: 1, 
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            zIndex: 500,
-            padding: '0',
-            //width: '40px',
-            //height: '40px',
-            display: 'flex',
-            alignItems: 'right',
-            justifyContent: 'center',
+            padding: 0,
           }}>
           <img src="/setting.png" alt="settings" style={{ width: '24px', height: '24px' }} />
         </button>
@@ -175,11 +167,11 @@ const Ranking = () => {
     <div style={{ padding: '20px', paddingBottom: '100px' }}>
       <h1 style={{ textAlign: 'center', marginTop: 0 }}>Rangliste</h1>
       <button 
-          onClick={() => navigate('/personalization')}
+          onClick={() => navigate('/settings')}
           style={{ 
             position: 'absolute',
-            top: '20px',
-            right: '40px',
+            top: '15px',
+            right: '20px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',

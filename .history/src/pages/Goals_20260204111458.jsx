@@ -1,3 +1,8 @@
+//noch einbinden, dass gemeinsame Ziele mit Freunden gesetzt werden können
+//unter Standardziele Filter Community-Ziele einbauen und dort implementieren dass Gruppe oder Freunde hinzugefügt werden
+//können und Ziel dann gemeinsam verfolgt wird
+//ggf. auch Rangliste für Gruppen oder Freunde einbauen
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useGoals } from '../context/GoalsContext';
 
@@ -45,63 +50,35 @@ const GoalCard = ({ goal, onProgress, onClick }) => {
         e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
       }}
     >
-      {/* Partner anzeigen bei Partner-Zielen */}
-      {goal.label === 'Partner' && goal.partner && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          marginBottom: 12,
-          padding: '6px 12px',
-          background: '#e3f2fd',
-          borderRadius: 8
-        }}>
-          <span style={{ color: '#1976D2', fontSize: 12 }}>Partner:</span>
-          <img
-            src={goal.partner.picture}
-            alt={goal.partner.title}
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: '50%',
-              objectFit: 'cover'
-            }}
-          />
-          <span style={{ fontWeight: 'bold', color: '#1976D2', fontSize: 13 }}>
-            {goal.partner.title}
-          </span>
-        </div>
-      )}
-
-      {/* Community anzeigen bei Community-Zielen */}
-      {goal.label === 'Community' && goal.community && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          marginBottom: 12,
-          padding: '6px 12px',
-          background: '#e3f2fd',
-          borderRadius: 8
-        }}>
-          <span style={{ color: '#1976D2', fontSize: 12 }}>Community:</span>
-          <icon> {goal.community.image}</icon>
-          {/*<img
-            src={goal.community.image}
-            alt={goal.community.name}
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: '50%',
-              objectFit: 'cover'
-            }}
-          />*/}
-          <span style={{ fontWeight: 'bold', color: '#1976D2', fontSize: 13 }}>
-            {goal.community.name}
-          </span>
-        </div>
-      )}
-
+      {/* Partner anzeigen bei aktiven Partner-Zielen */}
+            {activeGoal.label === 'Partner' && selectedPartner && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 10,
+                marginBottom: 15,
+                padding: '10px 20px',
+                background: '#e3f2fd',
+                borderRadius: 10
+              }}>
+                <span style={{ color: '#1976D2', fontSize: 13 }}>Partner:</span>
+                <img
+                  src={selectedPartner.picture}
+                  alt={selectedPartner.title}
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: '50%',
+                    objectFit: 'cover'
+                  }}
+                />
+                <span style={{ fontWeight: 'bold', color: '#1976D2' }}>
+                  {selectedPartner.title}
+                </span>
+              </div>
+            )}
+            
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>

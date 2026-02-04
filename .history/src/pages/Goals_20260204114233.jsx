@@ -85,8 +85,7 @@ const GoalCard = ({ goal, onProgress, onClick }) => {
           borderRadius: 8
         }}>
           <span style={{ color: '#1976D2', fontSize: 12 }}>Community:</span>
-          <icon> {goal.community.image}</icon>
-          {/*<img
+          <img
             src={goal.community.image}
             alt={goal.community.name}
             style={{
@@ -95,7 +94,7 @@ const GoalCard = ({ goal, onProgress, onClick }) => {
               borderRadius: '50%',
               objectFit: 'cover'
             }}
-          />*/}
+          />
           <span style={{ fontWeight: 'bold', color: '#1976D2', fontSize: 13 }}>
             {goal.community.name}
           </span>

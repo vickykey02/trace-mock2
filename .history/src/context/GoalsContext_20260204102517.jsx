@@ -17,11 +17,11 @@ export const PRESET_GOALS = [
   {
     id: 'preset-1',
     title: '7 Tage Wasser sparen',
-    description: 'Spart gemeinsam 500 Liter Wasser in 7 Tagen',
+    description: 'Spare jeden Tag bewusst Wasser durch kürzeres Duschen',
     category: 'Energie',
-    label: 'Community',
-    target: 500,
-    unit: 'Liter',
+    label: 'Individual',
+    target: 7,
+    unit: 'Tage',
     linkedAction: 'Wasser sparen',
     tips: [
       'Kürzer duschen - maximal 5 Minuten',
@@ -36,7 +36,7 @@ export const PRESET_GOALS = [
     title: '10x Unverpackt einkaufen',
     description: 'Kaufe 10 Mal in einem Unverpackt-Laden ein',
     category: 'Shopping', 
-    label:'Partner',
+    label:'Community',
     target: 10,
     unit: 'Einkäufe',
     linkedAction: 'Unverpackt kaufen',
@@ -53,7 +53,7 @@ export const PRESET_GOALS = [
     title: 'Fahrrad-Woche',
     description: 'Fahre diese Woche 5x mit dem Fahrrad statt Auto',
     category: 'Mobilität',
-    label:'Partner',
+    label:'Community',
     target: 5,
     unit: 'Fahrten',
     linkedAction: 'Fahrrad fahren',
@@ -87,7 +87,7 @@ export const PRESET_GOALS = [
     title: 'Regional essen',
     description: 'Kaufe 10x regionale Produkte vom Bauernmarkt',
     category: 'Ernährung',
-    label:'Partner',
+    label:'Community',
     target: 10,
     unit: 'Einkäufe',
     linkedAction: 'Lokale Produkte',
@@ -250,32 +250,6 @@ export const GoalsProvider = ({ children }) => {
     ));
   };
 
-  // Partner für ein Ziel setzen/entfernen
-  const setGoalPartner = (goalId, partner) => {
-    setActiveGoals(prev => prev.map(goal => {
-      if (goal.id === goalId) {
-        return {
-          ...goal,
-          partner: partner // { id, title, picture } oder null
-        };
-      }
-      return goal;
-    }));
-  };
-
-  // Community für ein Ziel setzen/entfernen
-  const setGoalCommunity = (goalId, community) => {
-    setActiveGoals(prev => prev.map(goal => {
-      if (goal.id === goalId) {
-        return {
-          ...goal,
-          community: community // { id, name, image } oder null
-        };
-      }
-      return goal;
-    }));
-  };
-
   // Prüfen ob Ziel bereits aktiv ist (nach ID)
   const isGoalActive = (goalId) => {
     return activeGoals.some(goal => goal.id === goalId);
@@ -319,8 +293,6 @@ export const GoalsProvider = ({ children }) => {
       updateProgressByAction,
       removeGoal,
       updateGoal,
-      setGoalPartner,
-      setGoalCommunity,
       isGoalActive,
       isGoalActiveByTitle,
       getActiveGoals,

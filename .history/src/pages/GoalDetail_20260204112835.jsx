@@ -2,18 +2,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useGoals } from '../context/GoalsContext';
 import { useFollow } from '../context/FollowContext';
 import { useFriends } from '../context/FriendsContext';
-import { useCommunities } from '../context/CommunityContext';
 import Delete from '../popups/Delete.jsx';
 import { useState } from 'react';
 
 export default function GoalDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getAnyGoalById, getGoalById, incrementProgress, removeGoal, addGoal, isGoalActive, setGoalPartner, setGoalCommunity } = useGoals();
+  const { getAnyGoalById, getGoalById, incrementProgress, removeGoal, addGoal, isGoalActive, setGoalPartner } = useGoals();
 
   const { followed } = useFollow();
   const { friends } = useFriends();
-  const { communities, joinedCommunities, getJoinedCommunities } = useCommunities();
   
   const goal = getAnyGoalById(id);
   const activeGoal = getGoalById(id); // Prüfen ob bereits aktiv
@@ -61,12 +59,12 @@ export default function GoalDetail() {
     ? (activeGoal?.community || null) 
     : pendingCommunity;
 
-  // Hole die beigetretenen Communities mit ihren Daten
-  const myJoinedCommunities = getJoinedCommunities();
+  // Hole die gefolgten Communities mit ihren Daten
+  const followedCommunities = communities.filter(f => followed.includes(f.id));
 
   // Community auswählen
   const handleSelectCommunity = (community) => {
-    const communityData = { id: community.id, name: community.name, image: community.image };
+    const communityData = { id: community.id, title: community.title, picture: community.picture };
     if (isActive) {
       // Ziel bereits aktiv -> direkt im Context speichern
       setGoalCommunity(id, communityData);
@@ -132,8 +130,8 @@ export default function GoalDetail() {
     navigate('/goals');
   };
 
-  // Prüfen ob Partner/Community-Ziel ohne entsprechende Auswahl
-  const isPartnerGoalWithoutPartner = (goal.label === 'Partner' && !selectedPartner) || (goal.label === 'Community' && !selectedCommunity);
+  // Prüfen ob Partner-Ziel ohne Partner
+  const isPartnerGoalWithoutPartner = goal.label === 'Partner' && !selectedPartner || goal.label === 'Community' && !selectedCommunity;
 
   const getTypeLabel = () => {
     switch (goal.type) {
@@ -519,18 +517,18 @@ export default function GoalDetail() {
             {/* Hinzufügen-Button - bei Partner-Zielen nur aktiv wenn Partner gewählt */}
             <button
               onClick={handleAddGoal}
-              disabled={isPartnerGoalWithoutPartner}
+              disabled={isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity}
               style={{
                 padding: '12px 30px',
-                background: isPartnerGoalWithoutPartner ? '#ccc' : '#128b09',
+                background: isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? '#ccc' : '#128b09',
                 color: '#fff',
                 border: 'none',
                 borderRadius: 8,
-                cursor: isPartnerGoalWithoutPartner ? 'not-allowed' : 'pointer',
+                cursor: isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? 'not-allowed' : 'pointer',
                 fontWeight: 'bold',
                 fontSize: 16
               }}
-              title={isPartnerGoalWithoutPartner ? 'Bitte wähle zuerst einen Partner oder eine Community' : ''}
+              title={isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? 'Bitte wähle zuerst einen Partner oder eine Community' : ''}
             >
               + Zu meinen Zielen hinzufügen
             </button>
@@ -779,12 +777,12 @@ export default function GoalDetail() {
               </button>
             </div>
             
-            {myJoinedCommunities.length > 0 ? (
+            {followedFriends.length > 0 ? (
               <div>
-                {myJoinedCommunities.map(community => (
+                {followedFriends.map(friend => (
                   <div
-                    key={community.id}
-                    onClick={() => handleSelectCommunity(community)}
+                    key={friend.id}
+                    onClick={() => handleSelectCommunity(friend)}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -799,20 +797,18 @@ export default function GoalDetail() {
                     onMouseEnter={(e) => e.currentTarget.style.background = '#f5f5f5'}
                     onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}
                   >
-                    <div style={{
-                      width: 45,
-                      height: 45,
-                      borderRadius: 10,
-                      background: '#e8f5e8',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 24
-                    }}>
-                      {community.image}
-                    </div>
+                    <img
+                      src={friend.picture}
+                      alt={friend.title}
+                      style={{
+                        width: 45,
+                        height: 45,
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                     <div>
-                      <p style={{ margin: 0, fontWeight: 'bold', color: '#333' }}>{community.name}</p>
+                      <p style={{ margin: 0, fontWeight: 'bold', color: '#333' }}>{community.title}</p>
                       <p style={{ margin: '2px 0 0 0', fontSize: 12, color: '#666' }}>{community.members} Mitglieder</p>
                     </div>
                   </div>

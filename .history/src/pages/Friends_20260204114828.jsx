@@ -41,10 +41,9 @@ const CommunityCard = ({ community, isJoined, onToggleJoin }) => (
           👥 {community.members} Mitglieder
         </span>
         <span style={{
-          height: 'fit-content',
           background: '#e8f5e8',
           color: '#128b09',
-          padding: '2px 8px',
+          padding: '2px 4px',
           borderRadius: 10,
           fontSize: 11
         }}>

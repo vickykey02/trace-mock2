@@ -113,7 +113,6 @@ function App() {
                     <BottomNav />
                   </div>
                       </Router>
-                      </CommunityProvider>
                       </RewardsProvider>
                       </FollowProvider>
                       </FriendsProvider>

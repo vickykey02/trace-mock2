@@ -17,11 +17,10 @@ export const PRESET_GOALS = [
   {
     id: 'preset-1',
     title: '7 Tage Wasser sparen',
-    description: 'Spart gemeinsam 500 Liter Wasser in 7 Tagen',
+    description: 'Spare jeden Tag bewusst Wasser durch kürzeres Duschen',
     category: 'Energie',
-    label: 'Community',
-    target: 500,
-    unit: 'Liter',
+    target: 7,
+    unit: 'Tage',
     linkedAction: 'Wasser sparen',
     tips: [
       'Kürzer duschen - maximal 5 Minuten',
@@ -36,7 +35,7 @@ export const PRESET_GOALS = [
     title: '10x Unverpackt einkaufen',
     description: 'Kaufe 10 Mal in einem Unverpackt-Laden ein',
     category: 'Shopping', 
-    label:'Partner',
+    category:'Community',
     target: 10,
     unit: 'Einkäufe',
     linkedAction: 'Unverpackt kaufen',
@@ -53,7 +52,6 @@ export const PRESET_GOALS = [
     title: 'Fahrrad-Woche',
     description: 'Fahre diese Woche 5x mit dem Fahrrad statt Auto',
     category: 'Mobilität',
-    label:'Partner',
     target: 5,
     unit: 'Fahrten',
     linkedAction: 'Fahrrad fahren',
@@ -70,7 +68,6 @@ export const PRESET_GOALS = [
     title: 'Recycling-Meister',
     description: 'Trenne 14 Tage lang konsequent deinen Müll',
     category: 'Abfall',
-    label:'Individual',
     target: 14,
     unit: 'Tage',
     linkedAction: 'Recycling',
@@ -87,7 +84,6 @@ export const PRESET_GOALS = [
     title: 'Regional essen',
     description: 'Kaufe 10x regionale Produkte vom Bauernmarkt',
     category: 'Ernährung',
-    label:'Partner',
     target: 10,
     unit: 'Einkäufe',
     linkedAction: 'Lokale Produkte',
@@ -108,7 +104,6 @@ export const FRIEND_GOALS = [
     title: 'Plastikfrei im Bad',
     description: 'Ersetze alle Plastikprodukte im Bad durch nachhaltige Alternativen',
     category: 'Shopping',
-    label: 'Individual',
     target: 10,
     unit: 'Produkte',
     createdBy: 'Jane Goodall',
@@ -124,7 +119,6 @@ export const FRIEND_GOALS = [
     title: '30 Tage kein Fast Fashion',
     description: 'Kaufe einen Monat lang keine neue Kleidung von Fast-Fashion-Marken',
     category: 'Shopping',
-    label: 'Individual',
     target: 30,
     unit: 'Tage',
     createdBy: 'Olivia Kempe',
@@ -140,7 +134,6 @@ export const FRIEND_GOALS = [
     title: 'Vegane Woche',
     description: 'Ernähre dich eine Woche komplett vegan',
     category: 'Ernährung',
-    label: 'Individual',
     target: 7,
     unit: 'Tage',
     createdBy: 'Olivia Kempe',
@@ -250,32 +243,6 @@ export const GoalsProvider = ({ children }) => {
     ));
   };
 
-  // Partner für ein Ziel setzen/entfernen
-  const setGoalPartner = (goalId, partner) => {
-    setActiveGoals(prev => prev.map(goal => {
-      if (goal.id === goalId) {
-        return {
-          ...goal,
-          partner: partner // { id, title, picture } oder null
-        };
-      }
-      return goal;
-    }));
-  };
-
-  // Community für ein Ziel setzen/entfernen
-  const setGoalCommunity = (goalId, community) => {
-    setActiveGoals(prev => prev.map(goal => {
-      if (goal.id === goalId) {
-        return {
-          ...goal,
-          community: community // { id, name, image } oder null
-        };
-      }
-      return goal;
-    }));
-  };
-
   // Prüfen ob Ziel bereits aktiv ist (nach ID)
   const isGoalActive = (goalId) => {
     return activeGoals.some(goal => goal.id === goalId);
@@ -319,8 +286,6 @@ export const GoalsProvider = ({ children }) => {
       updateProgressByAction,
       removeGoal,
       updateGoal,
-      setGoalPartner,
-      setGoalCommunity,
       isGoalActive,
       isGoalActiveByTitle,
       getActiveGoals,

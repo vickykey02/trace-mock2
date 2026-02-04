@@ -1,3 +1,8 @@
+//noch einbinden, dass gemeinsame Ziele mit Freunden gesetzt werden können
+//unter Standardziele Filter Community-Ziele einbauen und dort implementieren dass Gruppe oder Freunde hinzugefügt werden
+//können und Ziel dann gemeinsam verfolgt wird
+//ggf. auch Rangliste für Gruppen oder Freunde einbauen
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useGoals } from '../context/GoalsContext';
 
@@ -69,35 +74,6 @@ const GoalCard = ({ goal, onProgress, onClick }) => {
           />
           <span style={{ fontWeight: 'bold', color: '#1976D2', fontSize: 13 }}>
             {goal.partner.title}
-          </span>
-        </div>
-      )}
-
-      {/* Community anzeigen bei Community-Zielen */}
-      {goal.label === 'Community' && goal.community && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          marginBottom: 12,
-          padding: '6px 12px',
-          background: '#e3f2fd',
-          borderRadius: 8
-        }}>
-          <span style={{ color: '#1976D2', fontSize: 12 }}>Community:</span>
-          <icon> {goal.community.image}</icon>
-          {/*<img
-            src={goal.community.image}
-            alt={goal.community.name}
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: '50%',
-              objectFit: 'cover'
-            }}
-          />*/}
-          <span style={{ fontWeight: 'bold', color: '#1976D2', fontSize: 13 }}>
-            {goal.community.name}
           </span>
         </div>
       )}

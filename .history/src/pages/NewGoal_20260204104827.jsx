@@ -167,7 +167,7 @@ const NewGoal = () => {
               )}
             </div>
           </div>
-         {/* <button
+          <button
             onClick={(e) => {
               e.stopPropagation();
               handleAddGoal(goal);
@@ -190,7 +190,7 @@ const NewGoal = () => {
             title={alreadyActive ? 'Bereits aktiv' : 'Zu meinen Zielen hinzufügen'}
           >
             {alreadyActive ? '✓' : '+'}
-          </button> */}
+          </button>
         </div>
       </div>
     );

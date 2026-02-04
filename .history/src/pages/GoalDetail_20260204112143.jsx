@@ -2,18 +2,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useGoals } from '../context/GoalsContext';
 import { useFollow } from '../context/FollowContext';
 import { useFriends } from '../context/FriendsContext';
-import { useCommunities } from '../context/CommunityContext';
 import Delete from '../popups/Delete.jsx';
 import { useState } from 'react';
 
 export default function GoalDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getAnyGoalById, getGoalById, incrementProgress, removeGoal, addGoal, isGoalActive, setGoalPartner, setGoalCommunity } = useGoals();
+  const { getAnyGoalById, getGoalById, incrementProgress, removeGoal, addGoal, isGoalActive, setGoalPartner } = useGoals();
 
   const { followed } = useFollow();
   const { friends } = useFriends();
-  const { communities, joinedCommunities, getJoinedCommunities } = useCommunities();
   
   const goal = getAnyGoalById(id);
   const activeGoal = getGoalById(id); // Prüfen ob bereits aktiv
@@ -61,12 +59,12 @@ export default function GoalDetail() {
     ? (activeGoal?.community || null) 
     : pendingCommunity;
 
-  // Hole die beigetretenen Communities mit ihren Daten
-  const myJoinedCommunities = getJoinedCommunities();
+  // Hole die gefolgten Communities mit ihren Daten
+  const followedCommunities = communities.filter(f => followed.includes(f.id));
 
   // Community auswählen
   const handleSelectCommunity = (community) => {
-    const communityData = { id: community.id, name: community.name, image: community.image };
+    const communityData = { id: community.id, title: community.title, picture: community.picture };
     if (isActive) {
       // Ziel bereits aktiv -> direkt im Context speichern
       setGoalCommunity(id, communityData);
@@ -132,8 +130,8 @@ export default function GoalDetail() {
     navigate('/goals');
   };
 
-  // Prüfen ob Partner/Community-Ziel ohne entsprechende Auswahl
-  const isPartnerGoalWithoutPartner = (goal.label === 'Partner' && !selectedPartner) || (goal.label === 'Community' && !selectedCommunity);
+  // Prüfen ob Partner-Ziel ohne Partner
+  const isPartnerGoalWithoutPartner = goal.label === 'Partner' || '' && !selectedPartner;
 
   const getTypeLabel = () => {
     switch (goal.type) {
@@ -244,35 +242,6 @@ export default function GoalDetail() {
                 />
                 <span style={{ fontWeight: 'bold', color: '#1976D2' }}>
                   {selectedPartner.title}
-                </span>
-              </div>
-            )}
-
-            {/* Community anzeigen bei aktiven Community-Zielen */}
-            {activeGoal.label === 'Community' && selectedCommunity && (
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 10,
-                marginBottom: 15,
-                padding: '10px 20px',
-                background: '#e3f2fd',
-                borderRadius: 10
-              }}>
-                <span style={{ color: '#1976D2', fontSize: 13 }}>Community:</span>
-                <img
-                  src={selectedCommunity.picture}
-                  alt={selectedCommunity.title}
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
-                    objectFit: 'cover'
-                  }}
-                />
-                <span style={{ fontWeight: 'bold', color: '#1976D2' }}>
-                  {selectedCommunity.title}
                 </span>
               </div>
             )}
@@ -429,82 +398,9 @@ export default function GoalDetail() {
                 </button>
               </>
             )}
-
-            {/* Für Community-Ziele: Erst Community auswählen */}
-            {goal.label === 'Community' && (
-              <>
-                {selectedCommunity ? (
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 10,
-                    marginBottom: 15,
-                    padding: '10px 20px',
-                    background: '#e3f2fd',
-                    borderRadius: 10
-                  }}>
-                    <img
-                      src={selectedCommunity.picture}
-                      alt={selectedCommunity.title}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                        objectFit: 'cover'
-                      }}
-                    />
-                    <span style={{ fontWeight: 'bold', color: '#1976D2' }}>
-                      {selectedCommunity.title}
-                    </span>
-                    <button
-                      onClick={handleRemoveCommunity}
-                      style={{
-                        background: 'transparent',
-                        border: 'none',
-                        color: '#999',
-                        cursor: 'pointer',
-                        fontSize: 18,
-                        padding: '0 5px'
-                      }}
-                      title="Community entfernen"
-                    >
-                      ✕
-                    </button>
-                  </div>
-                ) : (
-                  <div style={{
-                    background: '#e3f2fd',
-                    padding: 15,
-                    borderRadius: 8,
-                    marginBottom: 15,
-                    color: '#1976D2'
-                  }}>
-                    👥 Wähle zuerst eine Community für dieses Ziel!
-                  </div>
-                )}
-                
-                <button
-                  onClick={() => setShowCommunityPopup(true)}
-                  style={{
-                    padding: '12px 30px',
-                    background: selectedCommunity ? '#fff' : '#2196F3',
-                    color: selectedCommunity ? '#2196F3' : '#fff',
-                    border: selectedCommunity ? '2px solid #2196F3' : 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    fontWeight: 'bold',
-                    fontSize: 16,
-                    marginBottom: 15
-                  }}
-                >
-                  {selectedCommunity ? '👥 Community ändern' : '👥 Community auswählen'}
-                </button>
-              </>
-            )}
             
-            {/* Info-Hinweis (nur für Nicht-Partner/Community-Ziele) */}
-            {goal.label !== 'Partner' && goal.label !== 'Community' && (
+            {/* Info-Hinweis (nur für Nicht-Partner-Ziele) */}
+            {goal.label !== 'Partner' && (
               <div style={{
                 background: '#fff3e0',
                 padding: 15,
@@ -530,7 +426,7 @@ export default function GoalDetail() {
                 fontWeight: 'bold',
                 fontSize: 16
               }}
-              title={isPartnerGoalWithoutPartner ? 'Bitte wähle zuerst einen Partner oder eine Community' : ''}
+              title={isPartnerGoalWithoutPartner ? 'Bitte wähle zuerst einen Partner' : ''}
             >
               + Zu meinen Zielen hinzufügen
             </button>
@@ -733,111 +629,6 @@ export default function GoalDetail() {
                   }}
                 >
                   Freunde finden
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Community-Auswahl Popup */}
-      {showCommunityPopup && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(0,0,0,0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: 12,
-            padding: 20,
-            width: '90%',
-            maxWidth: 400,
-            maxHeight: '70vh',
-            overflow: 'auto'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 15 }}>
-              <h3 style={{ margin: 0, color: '#333' }}>👥 Community auswählen</h3>
-              <button
-                onClick={() => setShowCommunityPopup(false)}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  fontSize: 24,
-                  cursor: 'pointer',
-                  color: '#999'
-                }}
-              >
-                ✕
-              </button>
-            </div>
-            
-            {myJoinedCommunities.length > 0 ? (
-              <div>
-                {myJoinedCommunities.map(community => (
-                  <div
-                    key={community.id}
-                    onClick={() => handleSelectCommunity(community)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '12px',
-                      borderRadius: 8,
-                      cursor: 'pointer',
-                      transition: 'background 0.2s',
-                      border: '1px solid #eee',
-                      marginBottom: 8
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = '#f5f5f5'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}
-                  >
-                    <div style={{
-                      width: 45,
-                      height: 45,
-                      borderRadius: 10,
-                      background: '#e8f5e8',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 24
-                    }}>
-                      {community.image}
-                    </div>
-                    <div>
-                      <p style={{ margin: 0, fontWeight: 'bold', color: '#333' }}>{community.name}</p>
-                      <p style={{ margin: '2px 0 0 0', fontSize: 12, color: '#666' }}>{community.members} Mitglieder</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div style={{ textAlign: 'center', padding: 20, color: '#666' }}>
-                <p>Du bist noch in keiner Community.</p>
-                <button
-                  onClick={() => {
-                    setShowCommunityPopup(false);
-                    navigate('/friends');
-                  }}
-                  style={{
-                    marginTop: 10,
-                    padding: '10px 20px',
-                    background: '#128b09',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  Community finden
                 </button>
               </div>
             )}

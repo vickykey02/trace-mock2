@@ -41,7 +41,6 @@ const CommunityCard = ({ community, isJoined, onToggleJoin }) => (
           👥 {community.members} Mitglieder
         </span>
         <span style={{
-          height: 'fit-content',
           background: '#e8f5e8',
           color: '#128b09',
           padding: '2px 8px',
@@ -72,10 +71,10 @@ const CommunityCard = ({ community, isJoined, onToggleJoin }) => (
 
 const Friends = () => {
   const { friends: allFriends } = useFriends();
-  const { communities, joinedCommunities, toggleJoinCommunity, isJoined } = useCommunities();
 
   const [activeTab, setActiveTab] = useState('friends');
   const [searchTerm, setSearchTerm] = useState('');
+  const [joinedCommunities, setJoinedCommunities] = useState(['c1']); // Beispiel: schon einer Community beigetreten
 
   // Filtere Freunde basierend auf dem Suchbegriff
   const filteredFriends = allFriends.filter(friend => {
@@ -88,7 +87,7 @@ const Friends = () => {
   });
 
   // Filtere Communities basierend auf dem Suchbegriff
-  const filteredCommunities = communities.filter(community => {
+  const filteredCommunities = COMMUNITIES.filter(community => {
     if (!searchTerm.trim()) return true;
     const search = searchTerm.toLowerCase();
     return (
@@ -97,6 +96,14 @@ const Friends = () => {
       community.category.toLowerCase().includes(search)
     );
   });
+
+  const toggleJoinCommunity = (communityId) => {
+    setJoinedCommunities(prev => 
+      prev.includes(communityId)
+        ? prev.filter(id => id !== communityId)
+        : [...prev, communityId]
+    );
+  };
 
   const tabStyle = (isActive) => ({
     flex: 1,
@@ -215,7 +222,7 @@ const Friends = () => {
           {joinedCommunities.length > 0 && !searchTerm.trim() && (
             <div style={{ marginBottom: 25 }}>
               <h3 style={{ color: '#128b09', marginBottom: 10 }}>Meine Communities</h3>
-              {communities.filter(c => joinedCommunities.includes(c.id)).map(community => (
+              {COMMUNITIES.filter(c => joinedCommunities.includes(c.id)).map(community => (
                 <CommunityCard
                   key={community.id}
                   community={community}
@@ -238,7 +245,7 @@ const Friends = () => {
                   <CommunityCard
                     key={community.id}
                     community={community}
-                    isJoined={isJoined(community.id)}
+                    isJoined={joinedCommunities.includes(community.id)}
                     onToggleJoin={toggleJoinCommunity}
                   />
                 ))

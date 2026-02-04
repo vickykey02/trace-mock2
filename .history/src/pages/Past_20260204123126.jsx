@@ -2,7 +2,6 @@
 //mit cooler Grafik/Info und "mehr erfahren" mit Link zum Impact Screen
 
 import { useSubmittedActions } from '../context/SubmittedActionsContext';
-import { Link } from 'react-router-dom';
 
 const SubmittedActionCard = ({ action, onApprove, onReject }) => {
   const statusColors = {
@@ -98,44 +97,7 @@ const Past = () => {
         Verlauf
       </h1>
 
-      {/* Impact Einblendung */}
-      <style>
-        {`
-          @keyframes flowBackground {
-            0% {
-              background-position: 0% 0%;
-            }
-            100% {
-              background-position: 25% 100%;
-            }
-          }
-        `}
-      </style>
-      <Link to="/impact" style={{ textDecoration: 'none'}}> 
-        <div style={{
-          background: 'url(/Sustainability.png)',
-          backgroundSize: '100px',
-          animation: 'flowBackground 15s linear infinite',
-          borderRadius: '10px',
-          border: '1px solid #1c1c1c',
-          padding: '12px 15px',
-          marginBottom: '15px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          cursor: 'pointer',
-          color: '#fff'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-            <div style={{ overflow: 'hidden' }}>
-              <div style={{ fontWeight: 'bold', color: 'black', fontSize: '14px', whiteSpace: 'nowrap' }}>Dein Impact</div>
-              <div style={{ fontSize: '11px', color: 'black', opacity: 0.9, letterSpacing: '0.5px' }}>Schau dir an, was dein bisheriges Handeln schon bewirkt hat.</div>
-            </div>
-          </div>
-          <span style={{ fontSize: '18px', marginLeft: '10px' }}>→</span>
-        </div>
-      </Link>
-
+      
 
       {/* In Prüfung */}
       <section style={{ marginBottom: 40 }}>

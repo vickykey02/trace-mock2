@@ -1,4 +1,3 @@
-//fixen dass Checkmark als default nicht angezeigt aber Liste trotzdem deaktiviert ist
 //evtl. wenn noch viel Zeit Profile klickbar machen (aber alle das selbe und nur Name usw. je anpassen)
 //evtl. noch verschönern wenn Rangliste deaktiviert ist (Schloss, Anleitung wie aktivieren usw.)
 
@@ -6,7 +5,6 @@ import { useState } from 'react';
 import { usePoints } from '../context/PointsContext';
 import { useFriends } from '../context/FriendsContext';
 import { useFollow } from '../context/FollowContext';
-import { useNavigate } from 'react-router-dom';
 
 // Simulierte globale Nutzer für die Rangliste
 const globalUsers = [
@@ -113,30 +111,10 @@ const Ranking = () => {
   const { friends } = useFriends();
   const { followed } = useFollow();
   const rankingDisabled = JSON.parse(localStorage.getItem('rankingDisabled') || 'false');
-  const navigate = useNavigate();
 
   if (rankingDisabled) {
     return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
-        <button 
-          onClick={() => navigate('/personalization')}
-          style={{ 
-            position: 'absolute',
-            top: '20px',
-            right: '40px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            zIndex: 500,
-            padding: '0',
-            //width: '40px',
-            //height: '40px',
-            display: 'flex',
-            alignItems: 'right',
-            justifyContent: 'center',
-          }}>
-          <img src="/setting.png" alt="settings" style={{ width: '24px', height: '24px' }} />
-        </button>
         <p>Die Rangliste ist deaktiviert.</p>
       </div>
     );
@@ -174,25 +152,7 @@ const Ranking = () => {
   return (
     <div style={{ padding: '20px', paddingBottom: '100px' }}>
       <h1 style={{ textAlign: 'center', marginTop: 0 }}>Rangliste</h1>
-      <button 
-          onClick={() => navigate('/personalization')}
-          style={{ 
-            position: 'absolute',
-            top: '20px',
-            right: '40px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            zIndex: 500,
-            padding: '0',
-            //width: '40px',
-            //height: '40px',
-            display: 'flex',
-            alignItems: 'right',
-            justifyContent: 'center',
-          }}>
-          <img src="/setting.png" alt="settings" style={{ width: '24px', height: '24px' }} />
-        </button>
+      
 
       {/* Toggle zwischen Global und Freunde */}
       <div style={{

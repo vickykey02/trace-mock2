@@ -320,7 +320,6 @@ export const GoalsProvider = ({ children }) => {
       removeGoal,
       updateGoal,
       setGoalPartner,
-      setGoalCommunity,
       isGoalActive,
       isGoalActiveByTitle,
       getActiveGoals,

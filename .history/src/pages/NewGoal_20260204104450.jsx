@@ -1,6 +1,5 @@
 // evtl. einbauen dass man Freund hinzufügen kann, überlegen ob Community Goals
 // Sinn machen oder erstmal zu viel sind
-//wenn Label nicht Individual, dann muss bei Klick auf plus erst Freund/Gruppe ausgewählt werden
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGoals, PRESET_GOALS, FRIEND_GOALS } from '../context/GoalsContext';
@@ -167,7 +166,7 @@ const NewGoal = () => {
               )}
             </div>
           </div>
-         {/* <button
+          <button
             onClick={(e) => {
               e.stopPropagation();
               handleAddGoal(goal);
@@ -190,7 +189,7 @@ const NewGoal = () => {
             title={alreadyActive ? 'Bereits aktiv' : 'Zu meinen Zielen hinzufügen'}
           >
             {alreadyActive ? '✓' : '+'}
-          </button> */}
+          </button>
         </div>
       </div>
     );

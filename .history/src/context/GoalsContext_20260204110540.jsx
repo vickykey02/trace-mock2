@@ -263,19 +263,6 @@ export const GoalsProvider = ({ children }) => {
     }));
   };
 
-  // Community für ein Ziel setzen/entfernen
-  const setGoalCommunity = (goalId, community) => {
-    setActiveGoals(prev => prev.map(goal => {
-      if (goal.id === goalId) {
-        return {
-          ...goal,
-          community: community // { id, name, image } oder null
-        };
-      }
-      return goal;
-    }));
-  };
-
   // Prüfen ob Ziel bereits aktiv ist (nach ID)
   const isGoalActive = (goalId) => {
     return activeGoals.some(goal => goal.id === goalId);
@@ -320,7 +307,6 @@ export const GoalsProvider = ({ children }) => {
       removeGoal,
       updateGoal,
       setGoalPartner,
-      setGoalCommunity,
       isGoalActive,
       isGoalActiveByTitle,
       getActiveGoals,

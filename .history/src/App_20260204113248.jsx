@@ -62,7 +62,6 @@ function App() {
                       <FriendsProvider>
                       <FollowProvider>
                       <RewardsProvider>
-                      <CommunityProvider>
                       <Router>
                   <div style={{
                     display: 'flex',
@@ -113,7 +112,6 @@ function App() {
                     <BottomNav />
                   </div>
                       </Router>
-                      </CommunityProvider>
                       </RewardsProvider>
                       </FollowProvider>
                       </FriendsProvider>

@@ -106,7 +106,7 @@ const Past = () => {
               background-position: 0% 0%;
             }
             100% {
-              background-position: 25% 100%;
+              background-position: 100% 100%;
             }
           }
         `}
@@ -114,10 +114,9 @@ const Past = () => {
       <Link to="/impact" style={{ textDecoration: 'none'}}> 
         <div style={{
           background: 'url(/Sustainability.png)',
-          backgroundSize: '100px',
+          backgroundSize: '150px',
           animation: 'flowBackground 15s linear infinite',
           borderRadius: '10px',
-          border: '1px solid #1c1c1c',
           padding: '12px 15px',
           marginBottom: '15px',
           display: 'flex',
@@ -128,8 +127,8 @@ const Past = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
             <div style={{ overflow: 'hidden' }}>
-              <div style={{ fontWeight: 'bold', color: 'black', fontSize: '14px', whiteSpace: 'nowrap' }}>Dein Impact</div>
-              <div style={{ fontSize: '11px', color: 'black', opacity: 0.9, letterSpacing: '0.5px' }}>Schau dir an, was dein bisheriges Handeln schon bewirkt hat.</div>
+              <div style={{ fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>Dein Impact</div>
+              <div style={{ fontSize: '11px', color: 'black', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Schau dir an, was dein Handeln schon bewirkt hat.</div>
             </div>
           </div>
           <span style={{ fontSize: '18px', marginLeft: '10px' }}>→</span>

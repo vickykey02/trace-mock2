@@ -99,25 +99,11 @@ const Past = () => {
       </h1>
 
       {/* Impact Einblendung */}
-      <style>
-        {`
-          @keyframes flowBackground {
-            0% {
-              background-position: 0% 0%;
-            }
-            100% {
-              background-position: 25% 100%;
-            }
-          }
-        `}
-      </style>
       <Link to="/impact" style={{ textDecoration: 'none'}}> 
         <div style={{
+          //background: 'linear-gradient(135deg, #128b09 0%, #1db954 100%)',
           background: 'url(/Sustainability.png)',
-          backgroundSize: '100px',
-          animation: 'flowBackground 15s linear infinite',
           borderRadius: '10px',
-          border: '1px solid #1c1c1c',
           padding: '12px 15px',
           marginBottom: '15px',
           display: 'flex',
@@ -127,9 +113,10 @@ const Past = () => {
           color: '#fff'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+            <span style={{ fontSize: '20px' }}>💡</span>
             <div style={{ overflow: 'hidden' }}>
-              <div style={{ fontWeight: 'bold', color: 'black', fontSize: '14px', whiteSpace: 'nowrap' }}>Dein Impact</div>
-              <div style={{ fontSize: '11px', color: 'black', opacity: 0.9, letterSpacing: '0.5px' }}>Schau dir an, was dein bisheriges Handeln schon bewirkt hat.</div>
+              <div style={{ fontSize: '11px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Dein Impact</div>
+              <div style={{ fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Schau dir an, was dein Handeln schon bewirkt hat.</div>
             </div>
           </div>
           <span style={{ fontSize: '18px', marginLeft: '10px' }}>→</span>

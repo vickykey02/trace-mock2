@@ -132,8 +132,8 @@ export default function GoalDetail() {
     navigate('/goals');
   };
 
-  // Prüfen ob Partner/Community-Ziel ohne entsprechende Auswahl
-  const isPartnerGoalWithoutPartner = (goal.label === 'Partner' && !selectedPartner) || (goal.label === 'Community' && !selectedCommunity);
+  // Prüfen ob Partner-Ziel ohne Partner
+  const isPartnerGoalWithoutPartner = goal.label === 'Partner' && !selectedPartner || goal.label === 'Community' && !selectedCommunity;
 
   const getTypeLabel = () => {
     switch (goal.type) {
@@ -519,18 +519,18 @@ export default function GoalDetail() {
             {/* Hinzufügen-Button - bei Partner-Zielen nur aktiv wenn Partner gewählt */}
             <button
               onClick={handleAddGoal}
-              disabled={isPartnerGoalWithoutPartner}
+              disabled={isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity}
               style={{
                 padding: '12px 30px',
-                background: isPartnerGoalWithoutPartner ? '#ccc' : '#128b09',
+                background: isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? '#ccc' : '#128b09',
                 color: '#fff',
                 border: 'none',
                 borderRadius: 8,
-                cursor: isPartnerGoalWithoutPartner ? 'not-allowed' : 'pointer',
+                cursor: isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? 'not-allowed' : 'pointer',
                 fontWeight: 'bold',
                 fontSize: 16
               }}
-              title={isPartnerGoalWithoutPartner ? 'Bitte wähle zuerst einen Partner oder eine Community' : ''}
+              title={isPartnerGoalWithoutPartner || isCommunityGoalWithoutCommunity ? 'Bitte wähle zuerst einen Partner oder eine Community' : ''}
             >
               + Zu meinen Zielen hinzufügen
             </button>
