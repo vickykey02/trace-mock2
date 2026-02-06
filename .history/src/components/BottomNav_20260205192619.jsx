@@ -1,0 +1,102 @@
+import { Link } from 'react-router-dom';
+import { use, useState } from 'react';
+import ScanMethod from '../popups/ScanMethod';
+import KnowledgeType from '../popups/KnowledgeType';
+import PastOrReward from '../popups/PastOrReward';
+import ProgressOrRanking from '../popups/ProgressOrRanking';
+import { useLocation } from 'react-router-dom';
+
+const BottomNav = () => {
+  const [isScanOpen, setIsScanOpen] = useState(false);
+  const [isKnowledgeOpen, setIsKnowledgeOpen] = useState(false);
+  const [isPoROpen, setIsPoROpen] = useState(false);
+  const [isPoRaOpen, setIsPoRaOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (paths) => paths.some(p=> location.pathname.startsWith(p));
+
+  const getActiveStyle = (paths) => ({
+    background: isActive(paths) ? 'rgba(255,255,255,0.3)' : 'none',
+    borderRadius: isActive(paths) ? '8px' : 0,
+    padding: isActive(paths) ? '4px' : 0,
+  });
+  return (
+    <>
+      <nav style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: '#4abc96',
+        borderTop: '1px solid #4abc96',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        padding: '10px 0',
+        zIndex: 1000,
+      }}>
+        <button onClick={() => setIsPoRaOpen(true)} style={{
+          //background: 'none',
+          ...getActiveStyle(['/progress', '/ranking']),
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+        }}>
+          <img src="/trophy.png" alt="ProgressOrRanking" style={{ width: '24px', height: '24px' }} />
+        </button>
+
+        {/*<Link to="/progress" style={{ textDecoration: 'none' }}>
+          <img src="/progress.png" alt="Progress" style={{ width: '24px', height: '24px' }} />
+        </Link>
+        <Link to="/knowledge-base2" style={{ textDecoration: 'none' }}>
+         <img src="/idea.png" alt="Knowledge Base" style={{ width: '24px', height: '24px' }} />
+        </Link>*/}
+
+		<button onClick={() => setIsKnowledgeOpen(true)} style={{
+          //background: 'none',
+          ...getActiveStyle(['/knowledge-base2', '/tipps']),
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+        }}>
+          <img src="/idea.png" alt="Knowledge Base" style={{ width: '24px', height: '24px' }} />
+        </button>
+
+
+        <Link to="/home" style={{ textDecoration: 'none', ...getActiveStyle(['/home']) }}>
+          <img src="/home.png" alt="Home" style={{ width: '24px', height: '24px' }} />
+        </Link>
+
+        <button onClick={() => setIsScanOpen(true)} style={{
+          //background: 'none',
+            ...getActiveStyle(['/scan', '/contribute']),
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+        }}>
+          <img src="/plus.png" alt="Add" style={{ width: '24px', height: '24px' }} />
+        </button>
+
+        <button onClick={() => setIsPoROpen(true)} style={{
+          //background: 'none',
+            ...getActiveStyle(['/past', '/rewards']),
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+        }}>
+          <img src="/progress.png" alt="PastOrReward" style={{ width: '24px', height: '24px' }} />
+        </button>
+
+        {/*<Link to="/past" style={{ textDecoration: 'none' }}>
+          <img src="/clock.png" alt="Past & Rewards" style={{ width: '24px', height: '24px' }} />
+        </Link>*/}
+      </nav>
+      <ScanMethod isOpen={isScanOpen} onClose={() => setIsScanOpen(false)} />
+		<KnowledgeType isOpen={isKnowledgeOpen} onClose={() => setIsKnowledgeOpen(false)} />
+      <PastOrReward isOpen={isPoROpen} onClose={() => setIsPoROpen(false)} />
+      <ProgressOrRanking isOpen={isPoRaOpen} onClose={() => setIsPoRaOpen(false)} />
+    </>
+  );
+};
+
+export default BottomNav; 
