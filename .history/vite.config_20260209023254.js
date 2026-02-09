@@ -4,7 +4,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/trace-mock2/',
+  base: '/trace-mock/',
   plugins: [
     react(),
     basicSsl(),
@@ -19,16 +19,16 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: './',
+        start_url: '/',
         icons: [
           {
-            src: './Sustainability.png',
+            src: '/Sustainability.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any maskable'
           },
           {
-            src: './Sustainability.png',
+            src: '/Sustainability.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'

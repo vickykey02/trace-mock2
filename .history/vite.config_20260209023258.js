@@ -4,7 +4,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/trace-mock2/',
+  base: '/trace-mock/',
   plugins: [
     react(),
     basicSsl(),
