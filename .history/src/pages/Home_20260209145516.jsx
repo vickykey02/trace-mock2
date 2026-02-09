@@ -23,7 +23,7 @@ const Home = () => {
   const faktDesTages = knowledge[dayOfYear % knowledge.length];
 
   return (
-    <div style={{ padding: '30px', paddingBottom: '0'}}>
+    <div style={{ padding: '30px', paddingBottom: '100px'}}>
       {/*<div style={{ padding: '20px', margin: '0 auto', paddingBottom: '100px', boxSizing: 'border-box', maxWidth: '100%', overflowX: 'hidden' }}>*/}
       {/*<h1>TRACE - nachhaltige Spuren hinterlassen</h1>*/}
 

@@ -263,7 +263,7 @@ export default function Goals() {
             style={{
               backgroundColor: '#128b09ff',
               color: '#fff',
-              padding: '12px 10px',
+              padding: '12px 15px',
               border: 'none',
               borderRadius: '5px',
               cursor: 'pointer',

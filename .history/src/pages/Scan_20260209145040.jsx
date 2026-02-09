@@ -143,7 +143,7 @@ const Scan = () => {
   // oder hasPermission === false (Permission denied)
   
   return (
-    <div style={{ padding: '30px', paddingBottom: '0' }}> {/*0 statt 100*/} 
+    <div style={{ padding: '30px', paddingBottom: '100px', minHeight: 'calc(100vh - 100px)', boxSizing: 'border-box' }}>
       <PageHeader title="QR-Code scannen" />
       <p style={{ color: '#666', marginBottom: '20px', fontSize: '16px' }}>
         Halte einen QR-Code vor die Kamera um eine Handlung zu registrieren
