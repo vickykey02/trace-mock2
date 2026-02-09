@@ -116,7 +116,7 @@ const Impact = () => {
             Veränderung bewirken!
           </p>
           <p style={{ margin: 0, lineHeight: '1.6', fontSize: '14px' }}>
-            <br />Der <strong>Lulatsch</strong> als eines der Wahrzeichen von Chemnitz stellt hier synbolisch deinen nachhaltigen Fortschritt dar.
+            <br />Der Lulatsch als eines der Wahrzeichen von Chemnitz stellt hier synbolisch deinen nachhaltigen Fortschritt dar.
             Mit jedem Punkt, den du sammelst, bekommt er ein wenig mehr Farbe. Wenn er vollständig gefüllt ist, 
             rückt er in den Hintergrund und du füllst die nächste Sehenswürdigkeit aus der Chemnitzer Skyline, 
             bis du am Ende eine "grüne Stadt" erschaffen hast. 
