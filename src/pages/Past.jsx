@@ -110,7 +110,7 @@ const Past = () => {
       </style>
       <Link to="/impact" style={{ textDecoration: 'none'}}> 
         <div style={{
-          background: 'url(/Sustainability.png)',
+          background: `url(${import.meta.env.BASE_URL}Sustainability.png)`,
           backgroundSize: '100px',
           animation: 'flowBackground 15s linear infinite',
           borderRadius: '10px',
