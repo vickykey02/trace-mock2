@@ -5,8 +5,6 @@ import Esse from '../components/Esse';
 import {usePoints} from '../context/PointsContext';
 import { useNavigate } from 'react-router-dom';
 import { useNotifications } from '../context/NotificationsContext';
-import ScanMethod from '../popups/ScanMethod';
-import { useState } from 'react';
 
 const Home = () => {
   const { actions: allActions } = useActions();
@@ -14,7 +12,6 @@ const Home = () => {
   const {points, addPoints} = usePoints();
   const navigate = useNavigate();
   const { unreadCount } = useNotifications();
-  const [isScanOpen, setIsScanOpen] = useState(false);
 
   const handleAction = () => {
     addPoints(10, 'Testaktion');
@@ -246,9 +243,8 @@ const Home = () => {
             </Link>
           ))}
         </div>
-        <div style={{ display: 'flex', gap: '10px', marginTop: '15px', width: '100%', justifyContent: 'space-between' }}>
          {/* Faves Button */}
-        <Link to="/favorites" style={{ textDecoration: 'none' }}>
+        <Link to="/favorites" style={{ textDecoration: 'none', width: 'calc(20% - 5px)', display: 'block' }}>
           <div style={{
             borderRadius: '10px',
             padding: '12px 15px',
@@ -263,10 +259,12 @@ const Home = () => {
           </div>
         </Link>
         {/* Add Action Button */}
-        <button onClick={() => setIsScanOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginRight: '15px' }}>
+        <button onClick={() => setIsScanOpen(true)} style={{
+          ...navItemStyle,
+          ...getActiveStyle(['/scan', '/contribute']),
+        }}>
           <img src="./plus.png" alt="Add" style={{ width: '24px', height: '24px' }} />
         </button>
-        </div>
       </div>
       {/*bis hier*/}
       {/* Esse als Impact-Anzeige */}
@@ -315,7 +313,6 @@ const Home = () => {
         >
           +10 Punkte
       </button>*/}
-      <ScanMethod isOpen={isScanOpen} onClose={() => setIsScanOpen(false)} />
     </div>
   );
 };

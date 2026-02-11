@@ -86,8 +86,8 @@ const Impact = () => {
       <div style={{ marginTop: '-30px', padding: '30px', paddingBottom: '100px' }}>
           <PageHeader title="Dein Impact" />
           <p style = {{
-          marginTop: '-20px', fontSize: '11px', opacity: 0.9, letterSpacing: '0.5px', color: '#666' }}>
-          🛈 Impact-Punkte visualisieren deinen gesamten Fortschritt und verfallen nicht.
+          marginTop: '-10px', fontSize: '11px', opacity: 0.9, letterSpacing: '0.5px', color: '#666' }}>
+          Impact-Punkte visualisieren deinen gesamten Fortschritt und verfallen nicht.
         </p>
         <p style={{ 
           //color: '#fff', 

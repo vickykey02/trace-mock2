@@ -263,7 +263,7 @@ const Home = () => {
           </div>
         </Link>
         {/* Add Action Button */}
-        <button onClick={() => setIsScanOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginRight: '15px' }}>
+        <button onClick={() => setIsScanOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
           <img src="./plus.png" alt="Add" style={{ width: '24px', height: '24px' }} />
         </button>
         </div>

@@ -85,10 +85,6 @@ const Impact = () => {
     }}>
       <div style={{ marginTop: '-30px', padding: '30px', paddingBottom: '100px' }}>
           <PageHeader title="Dein Impact" />
-          <p style = {{
-          marginTop: '-20px', fontSize: '11px', opacity: 0.9, letterSpacing: '0.5px', color: '#666' }}>
-          🛈 Impact-Punkte visualisieren deinen gesamten Fortschritt und verfallen nicht.
-        </p>
         <p style={{ 
           //color: '#fff', 
           textShadow: '1px 1px 3px rgba(0,0,0,0.5)',
@@ -96,6 +92,9 @@ const Impact = () => {
           fontSize: '16px',
         }}>
           So hast du Chemnitz nachhaltiger gemacht 🌍
+        </p>
+        <p>
+          Impact-Punkte zeigen dir, wie 
         </p>
 
         {/* Impact Karten */}

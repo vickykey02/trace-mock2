@@ -188,44 +188,27 @@ const Friends = () => {
       {/* Freunde Tab */}
       {activeTab === 'friends' && (
         <>
-          {/* gefolgte Freunde sofern vorhanden */}
-          {followedFriends.length > 0 && !searchTerm.trim() && (
-            <div style={{ marginBottom: 25 }}>
-              <h3 style={{ color: '#128b09', marginBottom: 10 }}>Meine Freunde</h3>
-              {followedFriends.map(friend => (
-                <Friend key={friend.id} friend={friend} />
-              ))}
-            </div>
-          )}
-
-          {/* Suchergebnisse oder Hinweis */}
           {searchTerm.trim() ? (
-            <>
-              <h3 style={{ color: '#333', marginBottom: 10 }}>Suchergebnisse</h3>
-              {filteredFriends.length > 0 ? (
-                filteredFriends.map(friend => (
-                  <Friend key={friend.id} friend={friend} />
-                ))
-              ) : (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '40px 20px',
-                  color: '#999'
-                }}>
-                  <p>Keine Freunde gefunden. Versuche andere Suchbegriffe.</p>
-                </div>
-              )}
-            </>
-          ) : (
-            <div>
-              <h3 style={{ color: '#333', marginBottom: 10 }}>Freunde entdecken</h3>
+            filteredFriends.length > 0 ? (
+              filteredFriends.map(friend => (
+                <Friend key={friend.id} friend={friend} />
+              ))
+            ) : (
               <div style={{
                 textAlign: 'center',
                 padding: '40px 20px',
                 color: '#999'
               }}>
-                <p>Gib einen Namen ein, um neue Freunde zu finden.</p>
+                <p>Keine Freunde gefunden. Versuche andere Suchbegriffe.</p>
               </div>
+            )
+          ) : (
+            <div style={{
+              textAlign: 'center',
+              padding: '40px 20px',
+              color: '#999'
+            }}>
+              <p>Gib einen Namen ein, um Freunde zu finden.</p>
             </div>
           )}
         </>

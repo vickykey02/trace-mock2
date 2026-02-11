@@ -23,7 +23,7 @@ const Settings = () => {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         border: '1px solid #131212',
         borderRadius: '8px',
-        height: '40px',
+        height: '50px',
         padding: '20px',}}>
         <Link to="/personalization" style={{ flex: 1, textDecoration: 'none' }}>
         <button
@@ -32,7 +32,6 @@ const Settings = () => {
           padding: '12px 5px',//'0',
           background: 'none',
           width: '100%',
-          height: '40px',
           textAlign: 'center',
           cursor: 'pointer',
           fontSize: '18px',
@@ -43,7 +42,7 @@ const Settings = () => {
           //width: '100%',
         }}>
           <img src="./personalization.png" alt="Personalisierung und Datenschutz" 
-          style={{ width: '34px', height: '34px' }}/>
+          style={{ width: '44px', height: '44px' }}/>
           Personalisierung & Datenschutz
         </button>
         </Link>
@@ -54,7 +53,6 @@ const Settings = () => {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         border: '1px solid #131212',
         borderRadius: '8px',
-        height: '40px',
         padding: '20px',}}>
         <Link to="/personalization" style={{ flex: 1, textDecoration: 'none' }}>
         <button
@@ -63,7 +61,6 @@ const Settings = () => {
           padding: '12px 5px',//'0',
           background: 'none',
           width: '100%',
-          height: '40px',
           textAlign: 'center',
           cursor: 'pointer',
           fontSize: '18px',
@@ -74,7 +71,7 @@ const Settings = () => {
           //width: '100%',
         }}>
           <img src="./notification.png" alt="Benachrichtigungen" 
-          style={{ width: '34px', height: '34px' }}/>
+          style={{ width: '44px', height: '44px' }}/>
           Benachrichtigungen
         </button>
         </Link>
@@ -85,7 +82,6 @@ const Settings = () => {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         border: '1px solid #131212',
         borderRadius: '8px',
-        height: '40px',
         padding: '20px',}}>
         <Link to="/help" style={{ flex: 1, textDecoration: 'none' }}>
         <button
@@ -94,7 +90,6 @@ const Settings = () => {
           padding: '12px 5px',//'0',
           background: 'none',
           width: '100%',
-          height: '40px',
           textAlign: 'center',
           cursor: 'pointer',
           fontSize: '18px',
@@ -105,7 +100,7 @@ const Settings = () => {
           //width: '100%',
         }}>
           <img src="./question.png" alt="Hilfe" 
-          style={{ width: '34px', height: '34px' }}/>
+          style={{ width: '44px', height: '44px' }}/>
           Hilfe
         </button>
         </Link>
@@ -116,7 +111,6 @@ const Settings = () => {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         border: '1px solid #131212',
         borderRadius: '8px',
-        height: '40px',
         padding: '20px',}}>
         <Link to="/personalization" style={{ flex: 1, textDecoration: 'none' }}>
         <button
@@ -125,7 +119,6 @@ const Settings = () => {
           padding: '12px 5px',//'0',
           background: 'none',
           width: '100%',
-          height: '40px',
           textAlign: 'center',
           cursor: 'pointer',
           fontSize: '18px',
@@ -136,7 +129,7 @@ const Settings = () => {
           //width: '100%',
         }}>
           <img src="./feedback.png" alt="Feedback" 
-          style={{ width: '34px', height: '34px' }}/>
+          style={{ width: '44px', height: '44px' }}/>
           Feedback
         </button>
         </Link>

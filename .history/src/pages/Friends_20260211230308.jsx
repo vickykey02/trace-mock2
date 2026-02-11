@@ -188,7 +188,7 @@ const Friends = () => {
       {/* Freunde Tab */}
       {activeTab === 'friends' && (
         <>
-          {/* gefolgte Freunde sofern vorhanden */}
+          {/* Meine Freunde (denen ich folge) - immer anzeigen wenn vorhanden */}
           {followedFriends.length > 0 && !searchTerm.trim() && (
             <div style={{ marginBottom: 25 }}>
               <h3 style={{ color: '#128b09', marginBottom: 10 }}>Meine Freunde</h3>
