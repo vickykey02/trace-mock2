@@ -73,14 +73,14 @@ const BottomNav = () => {
         <Link to="/home" style={{ 
           ...navItemStyle, 
           textDecoration: 'none', 
-          ...getActiveStyle(['/home', '/friends', '/notifications', '/settings', '/Explore', '/favorites', '/personalization', '/profile']), 
+          ...getActiveStyle(['/home', '/friends', '/notifications', '/settings', '/goals', '/Explore', '/favorites', '/personalization', '/new-goal', '/profile']), 
         }}>
           <img src="./home.png" alt="Home" style={{ width: '24px', height: '24px' }} />
         </Link>
 
         <button onClick={() => setIsGoalStateOpen(true)} style={{
           ...navItemStyle,
-          ...getActiveStyle(['/goals', '/done-goals', '/new-goal', '/goal-detail']),
+          ...getActiveStyle(['/current-goal', '/done-goal', '/new-goal']),
         }}>
           <img src="./target.png" alt="Add" style={{ width: '24px', height: '24px' }} />
         </button>

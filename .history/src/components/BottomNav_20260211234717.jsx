@@ -73,7 +73,7 @@ const BottomNav = () => {
         <Link to="/home" style={{ 
           ...navItemStyle, 
           textDecoration: 'none', 
-          ...getActiveStyle(['/home', '/friends', '/notifications', '/settings', '/Explore', '/favorites', '/personalization', '/profile']), 
+          ...getActiveStyle(['/home', '/friends', '/notifications', '/settings', '/goals', '/Explore', '/favorites', '/personalization', '/new-goal', '/profile']), 
         }}>
           <img src="./home.png" alt="Home" style={{ width: '24px', height: '24px' }} />
         </Link>

@@ -205,12 +205,18 @@ export default function Goals() {
 
   return (
     <div style={{
-      padding: '30px'
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      overflow: 'hidden',
     }}>
-      <PageHeader title="Aktuelle Ziele" />
-
-          {activeGoals.length > 0 ? (
-            activeGoals.map(goal => (
+      <PageHeader title="Erreichte Ziele" />
+      
+        <div style={{
+          padding: '30px',
+        }}>
+          {completedGoals.length > 0 ? (
+            completedGoals.map(goal => (
               <GoalCard 
                 key={goal.id} 
                 goal={goal} 
@@ -219,32 +225,9 @@ export default function Goals() {
               />
             ))
           ) : (
-            <p style={{ color: '#999', textAlign: 'center', marginTop: 20 }}>Keine aktiven Ziele. Starte ein neues Ziel!</p>
+            <p style={{ color: '#999', textAlign: 'center', marginTop: 20 }}>Noch keine Ziele erreicht. Du schaffst das!</p>
           )}
-
-		<div style={{ marginTop: '10px', justifyContent: 'center', display: 'flex' }}>
-        <Link to="/new-goal" style={{ textDecoration: 'none',  justifyContent: 'center'}}>
-          <button
-            style={{
-              backgroundColor: '#128b09ff',
-              color: '#fff',
-              padding: '12px 10px',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              display: 'flex',
-              alignItems: 'center',
-			        justifyContent: 'center',
-              gap: '10px',
-            }}
-          >
-            {/*<img src="./submit.png" alt="Ziel einreichen" style={{ width: '24px', height: '24px' }} />*/}
-             🎯 Ziel hinzufügen
-          </button>
-        </Link>
-      </div>
-      </div>
+        </div>
+		</div>
   );
 }
