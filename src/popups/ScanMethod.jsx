@@ -1,5 +1,3 @@
-//überlegen ob Icons oder Text für Buttonbezeichnung genutzt werden soll
-
 import { useNavigate } from 'react-router-dom';
 
 const ScanMethod = ({ isOpen, onClose }) => {

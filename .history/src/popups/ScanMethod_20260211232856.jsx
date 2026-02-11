@@ -30,19 +30,22 @@ const ScanMethod = ({ isOpen, onClose }) => {
     }} onClick={onClose}>
       <div style={{
         backgroundColor: '#fff',
+        marginTop: '350px', //wenn mit Abbrechen Button 300px
+        marginLeft: '50px',
+        marginRight: '50px',
         padding: '20px',
         borderRadius: '8px',
         maxWidth: '300px',
         width: '80%',
         textAlign: 'center',
       }} onClick={(e) => e.stopPropagation()}>
-        <h2>Wähle eine Option</h2>
+        <h3>Handlung hinzufügen</h3>
         <button onClick={handleScan} style={{
           display: 'block',
           width: '100%',
           padding: '10px',
           margin: '10px 0',
-          backgroundColor: '#128b09ff',
+          backgroundColor: '#4abc96',
           color: '#fff',
           border: 'none',
           borderRadius: '4px',
@@ -55,15 +58,15 @@ const ScanMethod = ({ isOpen, onClose }) => {
           width: '100%',
           padding: '10px',
           margin: '10px 0',
-          backgroundColor: '#128b09ff',
+          backgroundColor: '#4abc96',
           color: '#fff',
           border: 'none',
           borderRadius: '4px',
           cursor: 'pointer',
         }}>
-          Contribute
+          manuell eintragen
         </button>
-        <button onClick={onClose} style={{
+        {/*<button onClick={onClose} style={{   //Abbrechen Button muss eig nicht sein
           display: 'block',
           width: '100%',
           padding: '10px',
@@ -75,7 +78,7 @@ const ScanMethod = ({ isOpen, onClose }) => {
           cursor: 'pointer',
         }}>
           Abbrechen
-        </button>
+        </button>*/}
       </div>
     </div>
   );
