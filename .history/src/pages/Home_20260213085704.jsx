@@ -32,6 +32,17 @@ const Home = () => {
 
       {/* 3er Set Buttons */}
       <div style={{ display: 'flex', gap: '5px', marginBottom: '20px', overflow: 'hidden', boxSizing: 'border-box' }}>
+        <button 
+          onClick={() => navigate('/friends')}
+          style={{ 
+            flex: 1, 
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+          }}>
+          <img src="./friends.png" alt="friends" style={{ width: '24px', height: '24px' }} />
+        </button>
        {/*} <button 
           onClick={() => navigate('/notifications')}
           style={{ flex: 1, minWidth: 0, boxSizing: 'border-box' }}> 2
@@ -60,17 +71,6 @@ const Home = () => {
               border: '2px solid white'
             }} />
           )}
-        </button>
-        <button 
-          onClick={() => navigate('/friends')}
-          style={{ 
-            flex: 1, 
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-          }}>
-          <img src="./friends.png" alt="friends" style={{ width: '24px', height: '24px' }} />
         </button>
         <button 
           onClick={() => navigate('/settings')}
